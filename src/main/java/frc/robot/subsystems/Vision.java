@@ -114,13 +114,11 @@ public class Vision extends SubsystemBase {
       return;
     }*/
 
-    if(!resultLimelight.hasTargets()){
-      if(!LimeLight.getInstance().getIsLimeLightModeAprilTags()){
-        pose2d = null;
-        pose3d = null;
-        timeStamp = 0;
-        return;
-      }    
+    if(!resultLimelight.hasTargets() || !LimeLight.getInstance().getIsLimeLightModeAprilTags()){
+      pose2d = null;
+      pose3d = null;
+      timeStamp = 0;
+      return;  
     }
 
 
@@ -146,6 +144,7 @@ public class Vision extends SubsystemBase {
     target = resultLimelight.getBestTarget();
     timeStamp = resultLimelight.getTimestampSeconds();
     latency = resultLimelight.getLatencyMillis();
+    Logger.getInstance().recordOutput("cameraResultSource", "limelight");
 
     Optional<EstimatedRobotPose> eOptional = getEstimatedPose(lastPose2d, limeligPoseEstimator);
     EstimatedRobotPose camPose = eOptional.get();
