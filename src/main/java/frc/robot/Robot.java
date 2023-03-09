@@ -26,6 +26,9 @@ public class Robot extends LoggedRobot {
   private Command autonomousCommand;
   private RobotContainer robotContainer;
   private TimerWidget widget;
+  private Chassis chassis;
+
+  private RobotContainer m_robotContainer;
 
   /**
    * This function is run when the robot is first started up and should be used
@@ -34,42 +37,16 @@ public class Robot extends LoggedRobot {
   @Override
   public void robotInit() {
     Pneumatics.getInstance();
-    Logger logger = Logger.getInstance();
     // Record metadata
-    logger.recordMetadata("ProjectName", BuildConstants.MAVEN_NAME);
-    logger.recordMetadata("BuildDate", BuildConstants.BUILD_DATE);
-    logger.recordMetadata("GitSHA", BuildConstants.GIT_SHA);
-    logger.recordMetadata("GitDate", BuildConstants.GIT_DATE);
-    logger.recordMetadata("GitBranch", BuildConstants.GIT_BRANCH);
-    switch (BuildConstants.DIRTY) {
-      case 0:
-        logger.recordMetadata("GitDirty", "All changes committed");
-        break;
-      case 1:
-        logger.recordMetadata("GitDirty", "Uncomitted changes");
-        break;
-      default:
-        logger.recordMetadata("GitDirty", "Unknown");
-        break;
-    }
-
-    // Set up data receivers & replay source
-    if (Constants.currentMode == Constants.Mode.SIM || Constants.currentMode == Constants.Mode.REAL) {
-      logger.addDataReceiver(new WPILOGWriter(""));
-      logger.addDataReceiver(new NT4Publisher());
-    } else if (Constants.currentMode == Constants.Mode.REPLAY) {
-      setUseTiming(false);
-      String logPath = LogFileUtil.findReplayLog();
-      logger.setReplaySource(new WPILOGReader(logPath));
-      logger.addDataReceiver(new WPILOGWriter(LogFileUtil.addPathSuffix(logPath, "_sim")));
-    }
 
     // Start AdvantageKit logger
-    logger.start();
 
     // Instantiate our RobotContainer. This will perform all our button bindings,
     // and put our autonomous chooser on the dashboard.
     robotContainer = new RobotContainer();
+    chassis = Chassis.getInstance();
+    CommandScheduler.getInstance().setDefaultCommand(chassis, new Drive());
+    m_robotContainer = new RobotContainer();
   }
 
   /** This function is called periodically during all modes. */
@@ -81,6 +58,7 @@ public class Robot extends LoggedRobot {
     // This must be called from the robot's periodic block in order for anything in
     // the Command-based framework to work.
     CommandScheduler.getInstance().run();
+    chassis.update();
   }
 
   /** This function is called once when the robot is disabled. */

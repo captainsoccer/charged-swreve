@@ -21,6 +21,17 @@ public final class Constants {
   public static final double heldThres = -0.9;
   public static final boolean IsLimeLightAprilTags = false;
   public static final int FALCON500_COUNTS_PER_REVOLUTION = 2048;
+  public static final double GRAVITY = 9.8066;
+
+  public static final int LEFT_FRONT_SPIN = 1;
+  public static final int RIGHT_FRONT_SPIN = 3;
+  public static final int LEFT_BACK_SPIN = 5;
+  public static final int RIGHT_BACK_SPIN = 7;
+
+  public static final int LEFT_FRONT_STEER = 2;
+  public static final int RIGHT_FRONT_STEER = 4;
+  public static final int LEFT_BACK_STEER = 6;
+  public static final int RIGHT_BACK_STEER = 8;
   static class FieldConstants {
     static final double length = Units.feetToMeters(54);
     static final double width = Units.feetToMeters(27);
@@ -51,20 +62,12 @@ public final class Constants {
 
 
   public static class RobotConstants {
-    public static final int ARM_ROTATION_MOTOR = 7;
-    public static final int ARM_EXTENSION_MOTOR = 8;
-    public static final int ORIENTATION_ELEVATED_MOTOR = 5;
-    public static final int ORIENTATION_RAMP_MOTOR = 6;
-    public static final int[] ORIENTATION_RAMP_SOLENOID_PORTS = {8, 9};
-    public static final int[] ORIENTATION_ELEVATED_SOLENOID_PORTS = {10, 11};
-
-  }
-
-  public static class TempConstants{
-    public static final int ENGINE1_ID = 10;
-    public static final int ENGINE2_ID = 2;
-    public static final int ENGINE3_ID = 3;
-    public static final int ENGINE4_ID = 4;
+    public static final int ARM_ROTATION_MOTOR = 23;
+    public static final int ARM_EXTENSION_MOTOR = 24;
+    public static final int ORIENTATION_ELEVATED_MOTOR = 21;
+    public static final int ORIENTATION_RAMP_MOTOR = 20;
+    public static final int[] ORIENTATION_RAMP_SOLENOID_PORTS = {0, 1};
+    public static final int[] ORIENTATION_ELEVATED_SOLENOID_PORTS = {2, 3};
 
   }
 
@@ -73,7 +76,7 @@ public final class Constants {
     public static final double GRIPPER_SPEED = 1.0;
     public static final double GRIPPER_GEAR_RATIO = 1.6;
     public static final double GRIPPER_TOLERANCE = Units.degreesToRadians(2);
-    public static final int[] GRIPPER_DOUBLE_SOLENOID_PORTS = {13, 15};
+    public static final int[] GRIPPER_DOUBLE_SOLENOID_PORTS = {4, 5};
   }
 
 
@@ -105,17 +108,4 @@ public final class Constants {
 
     
   }
-}
-public final class Constants {
-  public static final double GRAVITY = 9.8066;
-
-  public static final int LEFT_FRONT_SPIN = 1;
-  public static final int RIGHT_FRONT_SPIN = 3;
-  public static final int LEFT_BACK_SPIN = 5;
-  public static final int RIGHT_BACK_SPIN = 7;
-
-  public static final int LEFT_FRONT_STEER = 2;
-  public static final int RIGHT_FRONT_STEER = 4;
-  public static final int LEFT_BACK_STEER = 6;
-  public static final int RIGHT_BACK_STEER = 8;
 }

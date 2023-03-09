@@ -12,7 +12,7 @@ public class SwerveModuleConstants {
       new Translation2d(-kWheelBase / 2, -kTrackWidth / 2),
       new Translation2d(-kWheelBase / 2, kTrackWidth / 2));
 
-  public static final double freeSpeedMetersPerSecond = 2;
+  public static final double freeSpeedMetersPerSecond = 4;
   public static final double driveRatio = 6.75;
   public static final double steeringRatio = 12.5;
   public static final double wheelRadiusMeters = 0.0508; // 2 inches (in meters)
